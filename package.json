@@ -1,0 +1,17 @@
+{
+  "name": "rss_reader",
+  "version": "1.0.0",
+  "description": "Rss reader",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Arjun Komath <arjunkomath@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "backbone": "^1.2.3",
+    "backbone.localstorage": "^1.1.16",
+    "express": "^4.13.3",
+    "underscore": "^1.8.3"
+  }
+}

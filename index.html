@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<title>RSS Reader</title>
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+      <![endif]-->
+  </head>
+  <body>
+  	<div id="main"></div>
+
+  	<script type="text/template" id="template">
+  		<div class="container">
+  			<div class="page-header">
+  				<h1>Simple RSS Reader <small><a href="#" data-toggle="modal" data-target="#addModal">Add New</a></small></h1>
+  			</div>
+  			<div class="panel panel-default">
+  				<div class="panel-body" id="feeds_button">
+  					<% _.each(feeds, function(feed){ %>
+  						<button class="btn btn-primary <% if(feed.active) { %>btn-success<% } %> feed_link" data-fid="<%= feed.id %>"><%= feed.title %></button>
+  						<% }); %>
+  				</div>
+  			</div>
+
+  			<div class="row">
+  				<% _.each(items, function(item){ %>
+  					<div class="col-sm-12 col-md-12">
+  						<div class="thumbnail">
+  							<div class="caption">
+  							<h3><%= item.title %></h3>
+  								<p><%= item.summary.content %></p>
+  								<p><a href="<%= item.originId %>" class="btn btn-primary" role="button">Visit Page</a></p>
+  							</div>
+  						</div>
+  					</div>
+  					<% }); %>
+  			</div>
+
+  			<!-- Modal -->
+  			<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  				<div class="modal-dialog" role="document">
+  					<div class="modal-content">
+  						<div class="modal-header">
+  							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  							<h4 class="modal-title" id="myModalLabel">Add Feed</h4>
+  						</div>
+  						<div class="modal-body">
+  							<form class="form-horizontal">
+  								<fieldset>
+
+  									<!-- Text input-->
+  									<div class="form-group">
+  										<label class="col-md-4 control-label" for="title">Title</label>  
+  										<div class="col-md-4">
+  											<input id="title" name="title" type="text" placeholder="Enter Title" class="form-control input-md">
+
+  										</div>
+  									</div>
+
+  									<!-- Text input-->
+  									<div class="form-group">
+  										<label class="col-md-4 control-label" for="url">Feed URL</label>  
+  										<div class="col-md-4">
+  											<input id="url" name="url" type="text" placeholder="Enter URL" class="form-control input-md">
+
+  										</div>
+  									</div>
+
+  								</fieldset>
+  							</form>
+  						</div>
+  						<div class="modal-footer">
+  							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+  							<button type="button" class="btn btn-primary" data-dismiss="modal" id="add-button">Add</button>
+  						</div>
+  					</div>
+  				</div>
+  			</div>
+  		</div>
+  	</script>
+
+  	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  	<script src="https://cdn.rawgit.com/jfhovinne/jFeed/master/build/dist/jquery.jfeed.js"></script>
+  	<script src="node_modules/underscore/underscore.js"></script>
+  	<script src="node_modules/backbone/backbone.js"></script>
+  	<script src="node_modules/backbone.localstorage/backbone.localStorage.js"></script>
+  	<script src="js/rss-collection.js"></script>
+  	<script src="js/view.js"></script>
+  	<script src="js/app.js"></script>
+  	<!-- Latest compiled and minified JavaScript -->
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+  </body>
+  </html>
